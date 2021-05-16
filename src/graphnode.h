@@ -9,6 +9,8 @@
 // forward declarations
 class GraphEdge;
 
+
+
 class GraphNode
 {
 private:
