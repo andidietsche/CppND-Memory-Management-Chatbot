@@ -20,7 +20,7 @@ private:
 
     //std::vector<GraphNode *> _nodes; //start code
     std::vector<std::unique_ptr<GraphNode>> _nodes;
-    
+
     std::vector<GraphEdge *> _edges;
 
     ////
