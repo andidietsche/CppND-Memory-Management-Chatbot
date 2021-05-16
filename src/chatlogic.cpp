@@ -39,6 +39,8 @@ ChatLogic::~ChatLogic()
 
     //Don't need delete anymore since smart pointer deallocate by themselves
     // delete all nodes
+
+    //smart pointer do not need a destructor
     // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     // {
     //     delete *it;
@@ -46,10 +48,10 @@ ChatLogic::~ChatLogic()
 
 
     // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
+    // for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
+    // {
+    //     delete *it;
+    // }
 
     ////
     //// EOF STUDENT CODE
@@ -177,7 +179,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge->get()); 
+                            (*childNode)->AddEdgeToParentNode(edge.get()); 
                             (*parentNode)->AddEdgeToChildNode(std::move(edge)); //transfer ownership to parent node so that the Graphnode 
                                                                             //exclusivley owns the outgoing Graphedge
                         }
@@ -226,7 +228,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
+    _chatBot->SetRootNode(rootNode.get());
     rootNode->MoveChatbotHere(_chatBot);
     
     ////
